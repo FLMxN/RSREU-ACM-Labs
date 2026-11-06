@@ -10,35 +10,32 @@
 # tempA - вспомогательная для массива 1, tempB - вспомогательная для массива 2,
 # amaxi - индекс макс. элемента массива 1, bmaxi - индекс макс. элемента массива 2
 
-from random import uniform
+a = [float(input()) for _ in range(int(input("Число элементов А: ")))]
+b = [float(input()) for _ in range(int(input("Число элементов В: ")))]
 
-left = 1
-right = 15
+# print(*a)
+# print(*b)
+# print()
 
-a = [uniform(left, right) for _ in range(round(uniform(left, right)))]
-b = [uniform(left, right) for _ in range(round(uniform(left, right)))]
+tempA = -float('inf')
+tempB = -float('inf')
 
-print(a)
-print(b)
-print()
-
-tempA = 0
 amaxi = 0
-for k, i in enumerate(a, 0):
-    if i > tempA:
-        tempA = i
-        amaxi = k
-
-tempB = 0
 bmaxi = 0
-for k, i in enumerate(b, 0):
-    if i > tempB:
-        tempB = i
-        bmaxi = k
+
+for i in range(len(a)):
+    if a[i] > tempA:
+        tempA = a[i]
+        amaxi = i
+
+for i in range(len(b)):
+    if b[i] > tempB:
+        tempB = b[i]
+        bmaxi = i
 
 temp = a[amaxi]
 a[amaxi] = b[bmaxi]
 b[bmaxi] = temp
 
-print(a)
-print(b)
+print(*a)
+print(*b)
