@@ -5,49 +5,36 @@
 # Дата: 25.10.2026
 # Вариант 13
 # Переменные: 
-# left - левая граница рандома, right - правая граница рандома, 
-# a - матрица 1, b - матрица 2, temp - временная ячейка, n - порядок матрицы,
-# tempA - вспомогательная для матрицы 1, tempB - вспомогательная для матрицы 2,
-# amini - индекс столбца с минимальным элементом матрицы 1, bmini - индекс столбца с минимальным элементом матрциы 2
+# a - матрица 1, b - матрица 2, 
+# n - количество строк, m - количество столбцов,
+# minA - минимальный элемент матрицы 1, minB - минимальный элемент матрицы 2,
+# amini - индекс столбца с минимальным элементом матрицы 1, 
+# bmini - индекс столбца с минимальным элементом матрицы 2,
+# i, j - счетчики циклов, temp - временная ячейка для обмена, row - строка при выводе
 
-from random import uniform
+n, m = 2, int(input())
+print("Введите матрицу A:")
+a = [[int(x) for x in input().split()] for i in range(n)]
 
-left = 1
-right = 50
-n = 2
+print("Введите матрицу B:")
+b = [[int(x) for x in input().split()] for i in range(n)]
 
-a = [[round(uniform(left, right)) for _ in range(n)], [round(uniform(left, right)) for _ in range(n)]]
-b = [[round(uniform(left, right)) for _ in range(n)], [round(uniform(left, right)) for _ in range(n)]]
+amini, bmini = 0, 0
+minA, minB = a[0][0], b[0][0]
 
-for i in a: print(i)
-print()
-for i in b: print(i)
-print("---------------------------------------------------")
+for i in range(n):
+    for j in range(m):
+        if a[i][j] < minA:
+            minA, amini = a[i][j], j
+        if b[i][j] < minB:
+            minB, bmini = b[i][j], j
 
-tempA = (right+1, [])
-for i in range(len(a)):
-    for j in range(len(a)):
-        if a[i][j] < tempA[0]:
-            tempA = (a[i][j], [a[k][j] for k in range(len(a))])
-            amini = j
+for i in range(n):
+    temp = a[i][amini]
+    a[i][amini] = b[i][bmini]
+    b[i][bmini] = temp
 
-
-tempB = (right+1, [])
-for i in range(len(b)):
-    for j in range(len(b)):
-        if b[i][j] < tempB[0]:
-            tempB = (b[i][j], [b[k][j] for k in range(len(b))])
-            bmini = j
-
-for i in range(len(a)):
-    for j in range(len(a)):
-        if j == amini: a[i][j] = tempB[1][i]
-
-for i in range(len(b)):
-    for j in range(len(b)):
-        if j == bmini: b[i][j] = tempA[1][i]
-
-for i in a: print(i)
-print()
-for i in b: print(i)
-print()
+print("Матрица A:")
+for row in a: print(*row)
+print("Матрица B:")
+for row in b: print(*row)
