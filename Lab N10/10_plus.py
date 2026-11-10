@@ -24,4 +24,5 @@ m = int(input("Введите количество столбцов: "))
 matrix = [[i+n for n in range(m)] for i in range(1, n*m+1, m)]
 for j in range(len(matrix)):
     if j%2 == 1: matrix[j].reverse()
+    
 print(*matrix, sep='\n')
