@@ -1,6 +1,3 @@
-#недоделано
-#Вариант 13
-
 n = int(input())
 k = tuple(int(input("Введите число: ")) for _ in range(n))
 
