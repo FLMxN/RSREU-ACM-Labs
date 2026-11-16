@@ -1,26 +1,57 @@
-#недоделано
-#Вариант 13
+# Лабораторная работа 12
+# Подпрограммы
+# Программист: Машталеров Я.О., группа 643
+# Принял: асс. Соколов Е.А., доц. Дмитриева Т.А.
+# Дата: 16.11.2026
+# Вариант 13
+# Переменные: 
+# rows - количество строк матрицы, columns - количество столбцов матрицы,
+# matrix - матрица
+# n, k - номера строк для обнуления
+# i, j - индексы циклов
+# elem, row - параметры циклов (как элементы)
 
-from random import uniform
+def input_matrix(rows: int, cols: int) -> list[list]:
+    """Функция ввода матрицы с клавиатуры."""
+    matrix = []
+    print("Введите элементы матрицы:")
+    for i in range(rows):
+        row = []
+        for j in range(cols):
+            row.append(int(input(f"Элемент [{i+1}][{j+1}]: ")))
+        matrix.append(row)
+    return matrix
 
-left = 1
-right = 50
+def output_matrix(matrix: list[list]) -> None:
+    """Процедура вывода матрицы на экран."""
+    for row in matrix:
+        for elem in row:
+            print(f"{elem}", end=" ")
+        print()
+    print()
 
-def countrange(p, q, array):
-    """Функция подсчёта элементов 1D массива,
-        лежащих на отрезке [p; q]"""
-    n = 0
-    for i in array:
-        if p <= i <= q: n += 1
-    print(n)
+def relu_for_array(arr: list) -> None:
+    """Процедура обнуления всех отрицательных элементов
+       в одномерном массиве."""
+    for i in range(len(arr)):
+        if arr[i] < 0:
+            arr[i] = 0
 
-n = int(input())
-a = [[round(uniform(left, right)) for _ in range(n)] for _ in range(n)]
-for i in a: print(*i)
-print()
 
-p = int(input("P: "))
-q = int(input("Q: "))
+rows = int(input("Введите кол-во строк матрицы: "))
+cols = int(input("Введите кол-во столбцов матрицы: "))
 
-for j in [[m[k] for m in a] for k in range(len(a))]: countrange(p, q, j)
+matrix = input_matrix(rows, cols)
 
+print("Матрица до:")
+output_matrix(matrix)
+
+n = int(input(f"n: "))
+k = int(input(f"k: "))
+
+relu_for_array(matrix[n - 1])
+relu_for_array(matrix[k - 1])
+
+print(f"Матрица после:")
+
+output_matrix(matrix)
