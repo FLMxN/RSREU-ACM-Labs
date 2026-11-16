@@ -18,15 +18,16 @@ def input_matrix(rows: int, cols: int) -> list[list]:
     for i in range(rows):
         row = []
         for j in range(cols):
-            row.append(int(input(f"Элемент [{i+1}][{j+1}]: ")))
+            row.append(float(input(f"Элемент [{i+1}][{j+1}]: ")))
         matrix.append(row)
     return matrix
 
 def output_matrix(matrix: list[list]) -> None:
     """Процедура вывода матрицы на экран."""
     for row in matrix:
-        for elem in row:
-            print(f"{elem}", end=" ")
+        # for elem in row:
+        #     print(f"{elem}", end=" ")
+        print(*row)
         print()
     print()
 
@@ -46,12 +47,12 @@ matrix = input_matrix(rows, cols)
 print("Матрица до:")
 output_matrix(matrix)
 
-n = int(input(f"n: "))
-k = int(input(f"k: "))
+n = int(input(f"\nn: "))
+k = int(input(f"\nk: "))
 
 relu_for_array(matrix[n - 1])
 relu_for_array(matrix[k - 1])
 
-print(f"Матрица после:")
+print("Матрица после:")
 
 output_matrix(matrix)
