@@ -25,9 +25,9 @@ def input_matrix(rows: int, cols: int) -> list[list]:
 def output_matrix(matrix: list[list]) -> None:
     """Процедура вывода матрицы на экран."""
     for row in matrix:
-        # for elem in row:
-        #     print(f"{elem}", end=" ")
-        print(*row)
+        for elem in row:
+            print(f"{elem}", end=" ")
+        # print(*row)
         print()
     print()
 
